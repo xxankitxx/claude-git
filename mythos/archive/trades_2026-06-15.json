@@ -1,0 +1,864 @@
+{
+  "day": "2026-06-15",
+  "stats": {
+    "capital": 113299.0,
+    "day_pnl_cash": 13299.0,
+    "day_pnl_pts": 14.0,
+    "trades": 12,
+    "wins": 6,
+    "losses": 6,
+    "win_rate": 50.0,
+    "avg_win": 14213.0,
+    "avg_loss": -11996.0,
+    "expectancy": 1108.0,
+    "max_drawdown": 33787.0
+  },
+  "trades": [
+    {
+      "id": 1,
+      "direction": "PE",
+      "strike": 23950,
+      "right": "put",
+      "lots": 14,
+      "qty": 910,
+      "entry_price": 109.35,
+      "entry_time": "09:21:42",
+      "entry_epoch": 274207.2959506,
+      "stop_loss": 99.35,
+      "target": 168.36,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD -141/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.60/s \u00b7 a +0.049"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23960"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": false,
+          "detail": "book 1.4\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": true,
+          "detail": "short buildup"
+        }
+      ],
+      "peak_price": 119.7,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 99.35,
+      "exit_time": "09:44:52",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.0,
+      "pnl_cash": -9100.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 274865.9974697,
+      "limit_price": 107.25,
+      "limit_epoch": 274202.2706371,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 2,
+      "direction": "CE",
+      "strike": 23950,
+      "right": "call",
+      "lots": 13,
+      "qty": 845,
+      "entry_price": 102.8,
+      "entry_time": "09:46:17",
+      "entry_epoch": 275681.9145671,
+      "stop_loss": 92.8,
+      "target": 154.39,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": false,
+          "detail": "CVD +31/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": false,
+          "detail": "v -0.70/s \u00b7 a -0.055"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": true,
+          "detail": "call OI at 23950"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 9.0\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": true,
+          "detail": "long buildup"
+        }
+      ],
+      "peak_price": 106.8,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 92.7,
+      "exit_time": "09:56:37",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.1,
+      "pnl_cash": -8534.5,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 275748.543309,
+      "limit_price": 101.3,
+      "limit_epoch": 275676.846344,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 3,
+      "direction": "CE",
+      "strike": 23950,
+      "right": "call",
+      "lots": 14,
+      "qty": 910,
+      "entry_price": 90.35,
+      "entry_time": "09:58:41",
+      "entry_epoch": 276426.8638146,
+      "stop_loss": 80.35,
+      "target": 155.03,
+      "entry_score": 0.53,
+      "entry_components": [
+        {
+          "name": "Zone holding",
+          "fired": true,
+          "detail": "extreme 23932 (1222s old)"
+        },
+        {
+          "name": "Price turning",
+          "fired": true,
+          "detail": "+13 off extreme, held 1222s"
+        },
+        {
+          "name": "Our premium rising",
+          "fired": false,
+          "detail": "+0.05/s"
+        },
+        {
+          "name": "Their premium stalling",
+          "fired": true,
+          "detail": "-0.06/s"
+        },
+        {
+          "name": "Pressure exhausting",
+          "fired": true,
+          "detail": "CVD 30s +38 vs 2m +28"
+        },
+        {
+          "name": "Defenders adding OI",
+          "fired": true,
+          "detail": "put OI +2527/s (1m +484)"
+        },
+        {
+          "name": "Book favours us",
+          "fired": true,
+          "detail": "our 0.6\u00d7 \u00b7 their offers 2.0\u00d7"
+        },
+        {
+          "name": "Heavyweights agree",
+          "fired": true,
+          "detail": "basket 60/100"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        },
+        {
+          "name": "AVWAP reclaim",
+          "fired": false,
+          "detail": "fut 23942 vs AVWAP-high 23958"
+        },
+        {
+          "name": "ATM\u00b16 PCR shift",
+          "fired": false,
+          "detail": "0.85 (-0.012/3m \u00b7 v -0.0001)"
+        },
+        {
+          "name": "BankNifty/FinNifty agree",
+          "fired": false,
+          "detail": "BANK -0.03% \u00b7 FINN -0.01%"
+        },
+        {
+          "name": "OI divergence",
+          "fired": false,
+          "detail": "covering"
+        },
+        {
+          "name": "Turn physics d\u00b2/dt\u00b2",
+          "fired": true,
+          "detail": "v -0.11/s \u00b7 a +0.035 \u00b7 j +0.0010"
+        },
+        {
+          "name": "Exhaustion (fall into zone)",
+          "fired": true,
+          "detail": "+41 pts into zone (need 12)"
+        }
+      ],
+      "peak_price": 104.45,
+      "trail_sl": 102.35,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 102.0,
+      "exit_time": "10:39:06",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 11.65,
+      "pnl_cash": 10601.5,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 278815.4284349,
+      "limit_price": 87.55,
+      "limit_epoch": 276421.6958709,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 4,
+      "direction": "CE",
+      "strike": 24000,
+      "right": "call",
+      "lots": 17,
+      "qty": 1105,
+      "entry_price": 84.6,
+      "entry_time": "10:43:25",
+      "entry_epoch": 279110.2896131,
+      "stop_loss": 74.6,
+      "target": 216.19,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD +45/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": false,
+          "detail": "v +0.22/s \u00b7 a +0.011"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": true,
+          "detail": "call OI at 23950"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 1.9\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 107.4,
+      "trail_sl": 100.8336,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 100.65,
+      "exit_time": "10:54:02",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 16.05,
+      "pnl_cash": 17735.25,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 279628.9208899,
+      "limit_price": 81.95,
+      "limit_epoch": 279105.2571943,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 5,
+      "direction": "CE",
+      "strike": 24000,
+      "right": "call",
+      "lots": 16,
+      "qty": 1040,
+      "entry_price": 104.15,
+      "entry_time": "10:59:16",
+      "entry_epoch": 280061.0194356,
+      "stop_loss": 94.15,
+      "target": 129.9,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD +56/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": false,
+          "detail": "v +0.00/s \u00b7 a -0.006"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "call OI at 23980"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 11.0\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": true,
+          "detail": "short covering"
+        }
+      ],
+      "peak_price": 105.4,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 93.9,
+      "exit_time": "11:02:01",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.25,
+      "pnl_cash": -10660.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 280063.5329893,
+      "limit_price": 101.85,
+      "limit_epoch": 280055.9171287,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 6,
+      "direction": "PE",
+      "strike": 24000,
+      "right": "put",
+      "lots": 13,
+      "qty": 845,
+      "entry_price": 116.05,
+      "entry_time": "11:03:27",
+      "entry_epoch": 280312.3192107,
+      "stop_loss": 106.05,
+      "target": 240.34,
+      "entry_score": 0.47,
+      "entry_components": [
+        {
+          "name": "Zone holding",
+          "fired": true,
+          "detail": "extreme 23999 (162s old)"
+        },
+        {
+          "name": "Price turning",
+          "fired": true,
+          "detail": "+26 off extreme, held 162s"
+        },
+        {
+          "name": "Our premium rising",
+          "fired": false,
+          "detail": "+0.00/s"
+        },
+        {
+          "name": "Their premium stalling",
+          "fired": true,
+          "detail": "+0.00/s"
+        },
+        {
+          "name": "Pressure exhausting",
+          "fired": true,
+          "detail": "CVD 30s -37 vs 2m -2"
+        },
+        {
+          "name": "Defenders adding OI",
+          "fired": false,
+          "detail": "call OI -3267/s (1m -5155)"
+        },
+        {
+          "name": "Book favours us",
+          "fired": true,
+          "detail": "our 0.8\u00d7 \u00b7 their offers 1.7\u00d7"
+        },
+        {
+          "name": "Heavyweights agree",
+          "fired": false,
+          "detail": "basket 60/100"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        },
+        {
+          "name": "AVWAP reclaim",
+          "fired": false,
+          "detail": "fut 23987 vs AVWAP-low 23949"
+        },
+        {
+          "name": "ATM\u00b16 PCR shift",
+          "fired": false,
+          "detail": "1.19 (+0.164/3m \u00b7 v +0.0088)"
+        },
+        {
+          "name": "BankNifty/FinNifty agree",
+          "fired": true,
+          "detail": "BANK -0.04% \u00b7 FINN -0.08%"
+        },
+        {
+          "name": "OI divergence",
+          "fired": false,
+          "detail": "long-unwind"
+        },
+        {
+          "name": "Turn physics d\u00b2/dt\u00b2",
+          "fired": true,
+          "detail": "v -0.24/s \u00b7 a -0.030 \u00b7 j -0.0061"
+        },
+        {
+          "name": "Exhaustion (fall into zone)",
+          "fired": true,
+          "detail": "+26 pts into zone (need 12)"
+        }
+      ],
+      "peak_price": 132.0,
+      "trail_sl": 128.05,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 127.05,
+      "exit_time": "12:06:49",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 11.0,
+      "pnl_cash": 9295.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 284066.5073556,
+      "limit_price": 114.2,
+      "limit_epoch": 280307.0745603,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 7,
+      "direction": "PE",
+      "strike": 23950,
+      "right": "put",
+      "lots": 17,
+      "qty": 1105,
+      "entry_price": 100.4,
+      "entry_time": "12:08:47",
+      "entry_epoch": 284232.0293514,
+      "stop_loss": 90.4,
+      "target": 216.04,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD -46/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.58/s \u00b7 a +0.051"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23970"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 5.1\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 114.4,
+      "trail_sl": 112.4,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 112.1,
+      "exit_time": "12:16:03",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 11.7,
+      "pnl_cash": 12928.5,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 284661.0229316,
+      "limit_price": 98.75,
+      "limit_epoch": 284226.8745205,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 8,
+      "direction": "CE",
+      "strike": 23900,
+      "right": "call",
+      "lots": 15,
+      "qty": 975,
+      "entry_price": 124.75,
+      "entry_time": "13:10:53",
+      "entry_epoch": 287958.8318367,
+      "stop_loss": 114.75,
+      "target": 201.02,
+      "entry_score": 0.53,
+      "entry_components": [
+        {
+          "name": "Zone holding",
+          "fired": true,
+          "detail": "extreme 23915 (24s old)"
+        },
+        {
+          "name": "Price turning",
+          "fired": true,
+          "detail": "+12 off extreme, held 24s"
+        },
+        {
+          "name": "Our premium rising",
+          "fired": false,
+          "detail": "+0.00/s"
+        },
+        {
+          "name": "Their premium stalling",
+          "fired": true,
+          "detail": "+0.00/s"
+        },
+        {
+          "name": "Pressure exhausting",
+          "fired": true,
+          "detail": "CVD 30s +96 vs 2m +47"
+        },
+        {
+          "name": "Defenders adding OI",
+          "fired": false,
+          "detail": "put OI +0/s (1m +0)"
+        },
+        {
+          "name": "Book favours us",
+          "fired": false,
+          "detail": "our 1.0\u00d7 \u00b7 their offers 0.5\u00d7"
+        },
+        {
+          "name": "Heavyweights agree",
+          "fired": true,
+          "detail": "basket 60/100"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        },
+        {
+          "name": "AVWAP reclaim",
+          "fired": true,
+          "detail": "fut 23975 vs AVWAP-high 23967"
+        },
+        {
+          "name": "ATM\u00b16 PCR shift",
+          "fired": false,
+          "detail": "0.60 (-0.118/3m \u00b7 v -0.0056)"
+        },
+        {
+          "name": "BankNifty/FinNifty agree",
+          "fired": true,
+          "detail": "BANK +0.03% \u00b7 FINN +0.06%"
+        },
+        {
+          "name": "OI divergence",
+          "fired": false,
+          "detail": "covering"
+        },
+        {
+          "name": "Turn physics d\u00b2/dt\u00b2",
+          "fired": true,
+          "detail": "v +1.20/s \u00b7 a +0.218 \u00b7 j +0.0374"
+        },
+        {
+          "name": "Exhaustion (fall into zone)",
+          "fired": true,
+          "detail": "+12 pts into zone (need 12)"
+        }
+      ],
+      "peak_price": 126.35,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 114.6,
+      "exit_time": "13:13:54",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.15,
+      "pnl_cash": -9896.25,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 288052.6743202,
+      "limit_price": 121.25,
+      "limit_epoch": 287953.6542305,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 9,
+      "direction": "PE",
+      "strike": 23900,
+      "right": "put",
+      "lots": 20,
+      "qty": 1300,
+      "entry_price": 87.45,
+      "entry_time": "13:27:47",
+      "entry_epoch": 288972.8954911,
+      "stop_loss": 77.45,
+      "target": 187.1,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD -9/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.35/s \u00b7 a +0.019"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23930"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 13.5\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 103.5,
+      "trail_sl": 99.45,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 98.7,
+      "exit_time": "13:41:08",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 11.25,
+      "pnl_cash": 14625.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 289765.524145,
+      "limit_price": 85.2,
+      "limit_epoch": 288967.6450199,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 10,
+      "direction": "PE",
+      "strike": 23900,
+      "right": "put",
+      "lots": 22,
+      "qty": 1430,
+      "entry_price": 87.7,
+      "entry_time": "13:46:55",
+      "entry_epoch": 290120.4502236,
+      "stop_loss": 77.7,
+      "target": 184.71,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD -28/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.38/s \u00b7 a +0.037"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23920"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 1.6\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 107.9,
+      "trail_sl": 102.0824,
+      "trail_active": true,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 101.75,
+      "exit_time": "13:52:20",
+      "exit_reason": "TRAIL SL",
+      "pnl_pts": 14.05,
+      "pnl_cash": 20091.5,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 290426.5782519,
+      "limit_price": 86.35,
+      "limit_epoch": 290115.3728753,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 11,
+      "direction": "PE",
+      "strike": 23900,
+      "right": "put",
+      "lots": 24,
+      "qty": 1560,
+      "entry_price": 94.8,
+      "entry_time": "13:55:38",
+      "entry_epoch": 290643.6674906,
+      "stop_loss": 84.8,
+      "target": 179.82,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": false,
+          "detail": "CVD +67/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.43/s \u00b7 a +0.064"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": true,
+          "detail": "put OI at 23900"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 5.0\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 95.15,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 84.6,
+      "exit_time": "13:57:13",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.2,
+      "pnl_cash": -15912.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 290644.4341574,
+      "limit_price": 92.5,
+      "limit_epoch": 290638.4887337,
+      "pending": false,
+      "strike_delta_used": 0.5
+    },
+    {
+      "id": 12,
+      "direction": "PE",
+      "strike": 23900,
+      "right": "put",
+      "lots": 25,
+      "qty": 1625,
+      "entry_price": 82.4,
+      "entry_time": "14:03:31",
+      "entry_epoch": 291116.1658684,
+      "stop_loss": 72.4,
+      "target": 184.71,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": true,
+          "detail": "CVD -16/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.42/s \u00b7 a +0.066"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23920"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 5.0\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": false,
+          "detail": "neutral"
+        }
+      ],
+      "peak_price": 91.95,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 71.4,
+      "exit_time": "14:31:11",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -11.0,
+      "pnl_cash": -17875.0,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 291746.5288769,
+      "limit_price": 80.25,
+      "limit_epoch": 291111.045731,
+      "pending": false,
+      "strike_delta_used": 0.5
+    }
+  ]
+}

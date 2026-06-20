@@ -1,0 +1,72 @@
+{
+  "day": "2026-06-13",
+  "stats": {
+    "capital": 99304.5,
+    "day_pnl_cash": -695.5,
+    "day_pnl_pts": -10.7,
+    "trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": -696.0,
+    "expectancy": -696.0,
+    "max_drawdown": 696.0
+  },
+  "trades": [
+    {
+      "id": 1,
+      "direction": "PE",
+      "strike": 23400,
+      "right": "put",
+      "lots": 1,
+      "qty": 65,
+      "entry_price": 159.8,
+      "entry_time": "23:52:14",
+      "entry_epoch": 153633.2195696,
+      "stop_loss": 149.8,
+      "target": 221.6,
+      "entry_score": 0.6,
+      "entry_components": [
+        {
+          "name": "Flow thrust",
+          "fired": false,
+          "detail": "CVD -244/s"
+        },
+        {
+          "name": "Premium exploding",
+          "fired": true,
+          "detail": "v +0.58/s \u00b7 a +0.056"
+        },
+        {
+          "name": "Wall capitulating",
+          "fired": false,
+          "detail": "put OI at 23430"
+        },
+        {
+          "name": "Buyers queuing",
+          "fired": true,
+          "detail": "book 1.8\u00d7"
+        },
+        {
+          "name": "Unwinding fuel",
+          "fired": true,
+          "detail": "long unwinding"
+        }
+      ],
+      "peak_price": 162.0,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 149.1,
+      "exit_time": "23:52:42",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.7,
+      "pnl_cash": -695.5,
+      "status": "CLOSED",
+      "weak_count": 0,
+      "last_peak_epoch": 153639.8004182
+    }
+  ]
+}

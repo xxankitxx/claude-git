@@ -1,0 +1,2 @@
+id,direction,strike,lots,qty,entry_time,entry_price,exit_time,exit_price,exit_reason,pnl_pts,pnl_cash,entry_score,peak_price
+1,PE,25950,14,910,23:42:33,109.41,23:43:48,99.15,SL HIT,-10.26,-9336.6,0.5,112.2

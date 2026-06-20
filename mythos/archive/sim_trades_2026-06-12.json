@@ -1,0 +1,86 @@
+{
+  "day": "2026-06-12",
+  "stats": {
+    "capital": 90663.4,
+    "day_pnl_cash": -9336.6,
+    "day_pnl_pts": -10.26,
+    "trades": 1,
+    "wins": 0,
+    "losses": 1,
+    "win_rate": 0.0,
+    "avg_win": 0.0,
+    "avg_loss": -9337.0,
+    "expectancy": -9337.0,
+    "max_drawdown": 9337.0
+  },
+  "trades": [
+    {
+      "id": 1,
+      "direction": "PE",
+      "strike": 25950,
+      "right": "put",
+      "lots": 14,
+      "qty": 910,
+      "entry_price": 109.41,
+      "entry_time": "23:42:33",
+      "entry_epoch": 66647.5185657,
+      "stop_loss": 99.41,
+      "target": 182.0,
+      "entry_score": 0.5,
+      "entry_components": [
+        {
+          "name": "Zone holding",
+          "fired": true,
+          "detail": "extreme 26043"
+        },
+        {
+          "name": "Price turned",
+          "fired": false,
+          "detail": "+0 pts off extreme"
+        },
+        {
+          "name": "Our premium rising",
+          "fired": true,
+          "detail": "+0.48/s"
+        },
+        {
+          "name": "Their premium stalling",
+          "fired": true,
+          "detail": "-0.12/s"
+        },
+        {
+          "name": "Pressure exhausting",
+          "fired": false,
+          "detail": "CVD 30s +586 vs 2m +499"
+        },
+        {
+          "name": "Defenders adding OI",
+          "fired": false,
+          "detail": "call OI -2739/s at zone"
+        },
+        {
+          "name": "Book favours us",
+          "fired": true,
+          "detail": "our 0.4\u00d7 \u00b7 their offers 1.8\u00d7"
+        },
+        {
+          "name": "Heavyweights agree",
+          "fired": false,
+          "detail": "basket 58/100"
+        }
+      ],
+      "peak_price": 112.2,
+      "trail_sl": 0.0,
+      "trail_active": false,
+      "weakened": false,
+      "hold_escaped": false,
+      "exit_price": 99.15,
+      "exit_time": "23:43:48",
+      "exit_reason": "SL HIT",
+      "pnl_pts": -10.26,
+      "pnl_cash": -9336.6,
+      "status": "CLOSED",
+      "weak_count": 0
+    }
+  ]
+}

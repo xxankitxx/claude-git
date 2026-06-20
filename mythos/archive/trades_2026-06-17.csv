@@ -1,0 +1,3 @@
+id,direction,strike,lots,qty,entry_time,entry_price,exit_time,exit_price,exit_reason,pnl_pts,pnl_cash,entry_score,peak_price
+1,CE,24200,15,975,10:20:02,104.4,11:58:27,94.15,SL HIT,-10.25,-9993.75,0.8,110.95
+2,CE,24100,10,650,14:55:13,127.35,15:04:41,140.0,TRAIL SL,12.65,8222.5,0.67,146.45

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MYTHOS — Nifty Options Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo">MYTHOS<small>NIFTY OPTIONS INTELLIGENCE</small></div>
+  <div class="tape" id="tape"></div>
+  <div class="hdr-right">
+    <span id="feed-dot"><span class="dot dead"></span><span class="dim-t" id="feed-label">connecting…</span></span>
+    <button class="btn muted" id="sound-btn">🔇 Sound</button>
+    <button class="btn" id="archive-btn">Archive Day</button>
+    <span class="clock" id="clock">--:--:--</span>
+  </div>
+</header>
+
+<div class="grid">
+
+  <!-- Row 1 (TOP): what do I do right now — cockpit, position, premiums -->
+  <div class="panel span5">
+    <h2>Zone Hunter Cockpit <span class="h-extra">stalk → arm → confirm → fire</span></h2>
+    <div class="cockpit">
+      <div class="sig-banner neutral" id="sig-banner">WAITING FOR DATA</div>
+      <div class="score-duel" id="score-duel"></div>
+      <div class="dim-t" style="font-size:10px;line-height:1.5;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px">
+        MYTHOS hunts <b>strong OI zones</b>: it STALKS price approaching a zone, ARMS on the
+        touch, then counts live defense evidence (✔ rows below — premium velocity, order book,
+        OI defenders, heavyweights). When <b>most factors</b> hold for several seconds and the
+        premium is still near its zone-touch low, it FIRES — buying at the cheapest structural
+        price, not after the move. Broken zones flip roles (support ⇄ resistance).
+      </div>
+    </div>
+  </div>
+
+  <div class="panel span6 pos-panel">
+    <h2>Active Position <span class="h-extra" id="pos-stance"></span></h2>
+    <div id="position-body"><div class="pos-flat">FLAT — HUNTING</div></div>
+  </div>
+
+  <div class="panel span3">
+    <h2>Live Premiums <span class="h-extra" id="chain-extra"></span></h2>
+    <table id="chain-table"><thead>
+      <tr><th>CE OI</th><th>CE LTP</th><th style="text-align:center">Strike</th><th style="text-align:left">PE LTP</th><th style="text-align:left">PE OI</th><th style="text-align:left">PCR</th></tr>
+    </thead><tbody></tbody></table>
+  </div>
+
+  <!-- Today's Trades — raised up beside the cockpit/position (user) -->
+  <div class="panel span4">
+    <h2>Today's Trades</h2>
+    <div style="max-height:240px;overflow-y:auto" class="ticker">
+      <table id="trades-table"><thead>
+        <tr><th>#</th><th>Dir</th><th>Strike</th><th>In</th><th>Buy ₹</th><th>Out</th><th>Exit ₹</th><th>Pts</th><th>P&amp;L ₹</th><th>Verdict</th></tr>
+      </thead><tbody></tbody></table>
+    </div>
+  </div>
+
+  <!-- Row 2: sentiment + commentary -->
+  <div class="panel span4">
+    <h2>Index Sentiment <span class="h-extra" id="sent-extra"></span></h2>
+    <div class="gauge-wrap">
+      <svg id="gauge" width="170" height="100" viewBox="0 0 170 100"></svg>
+      <div>
+        <div class="gauge-big" id="gauge-num">—</div>
+        <div class="gauge-label" id="gauge-word">warming up</div>
+        <div class="gauge-label dim-t" id="gauge-basket"></div>
+      </div>
+    </div>
+    <div class="metric-row" id="overview-metrics"></div>
+  </div>
+
+  <div class="panel span4">
+    <h2>Market Commentary <span class="h-extra">incl. trade rationale</span></h2>
+    <div class="ticker" id="ticker" style="max-height:240px"><div class="dim-t" style="padding:10px">No extreme events yet — quiet tape.</div></div>
+  </div>
+
+  <!-- Row 3: price context -->
+  <div class="panel span6">
+    <h2>Nifty Spot <span class="h-extra" id="spot-extra"></span></h2>
+    <svg id="spot-chart" class="chart" height="148"></svg>
+    <div class="metric-row" id="spot-metrics"></div>
+  </div>
+
+  <div class="panel span6">
+    <h2>Heavyweight Sentiment <span class="dim-t" style="font-size:10px">· price+PCR+OI-wall · COINCIDENT (~63% of Nifty), not leading</span> <span class="h-extra" id="hw-extra"></span></h2>
+    <div id="hw-body"></div>
+  </div>
+
+  <div class="panel span6">
+    <h2>Market Nerve &amp; Memory <span class="dim-t" style="font-size:10px">· persistent poise across the complex + battle-tested S/R levels</span></h2>
+    <div id="mm-body"></div>
+  </div>
+
+  <!-- Row 4: OI structure + greeks (analytics, lower as requested) -->
+  <div class="panel span4">
+    <h2>OI Support / Resistance Thermometer <span class="h-extra" id="sr-extra"></span></h2>
+    <svg id="sr-ladder" class="chart" height="320"></svg>
+  </div>
+
+  <div class="panel span4">
+    <h2>Open Interest Pulse <span class="h-extra">who is defending which strike</span></h2>
+    <svg id="pcr-heat" class="chart" height="150"></svg>
+    <div id="oi-flow-readout" style="margin-top:10px"></div>
+  </div>
+
+  <div class="panel span4">
+    <h2>Premium Environment <span class="h-extra">is buying options favourable now?</span></h2>
+    <div id="premenv-body"></div>
+    <h2 style="margin-top:10px">Greeks <span class="h-extra">ATM · position</span></h2>
+    <div id="greeks-body" class="dim-t" style="font-size:11px">—</div>
+  </div>
+
+  <!-- Row 5: activity radars — the system never sits silent -->
+  <div class="panel span6">
+    <h2>OI &amp; Volume Radar <span class="h-extra">significant OI / volume shifts — any strike, any instrument</span></h2>
+    <div class="ticker" id="oi-radar" style="max-height:240px"><div class="dim-t" style="padding:10px">Watching every contract…</div></div>
+  </div>
+
+  <div class="panel span6">
+    <h2>Buyer / Seller Radar <span class="h-extra">order-book pressure shifts — any contract, any instrument</span></h2>
+    <div class="ticker" id="book-radar" style="max-height:240px"><div class="dim-t" style="padding:10px">Watching every book…</div></div>
+  </div>
+
+  <!-- Row 5c: OI / PCR multi-timeframe flow matrix -->
+  <div class="panel span12">
+    <h2>OI &amp; PCR Flow Matrix
+      <span class="h-extra">how every strike is firming or cracking — 3 / 5 / 10 / 15-min change in OI &amp; PCR</span>
+    </h2>
+    <div id="oi-flow-matrix"><div class="dim-t" style="padding:10px">Building OI history… (needs ~3 minutes of data)</div></div>
+  </div>
+
+  <!-- Row 5d: OPTION BATTLE LINES — defended floors / resisted ceilings -->
+  <div class="panel span12">
+    <h2>⚔ Option Battle Lines
+      <span class="h-extra">ATM/ITM CE &amp; PE — premium floors buyers DEFEND and ceilings sellers RESIST (serious buying/selling at the level)</span>
+    </h2>
+    <div id="battle-body"><div class="dim-t" style="padding:10px">Learning the fight — defended floors &amp; resisted ceilings surface as each premium is tested and held…</div></div>
+  </div>
+
+  <!-- Row 6: performance -->
+  <div class="panel span12">
+    <h2>Performance — Paper Capital <span class="h-extra" id="perf-extra"></span></h2>
+    <div class="stat-strip" id="stat-strip"></div>
+    <div id="eod-summary" style="display:none"></div>
+    <div id="learned-strip"></div>
+    <svg id="equity-chart" class="chart" height="110" style="margin-top:8px"></svg>
+  </div>
+
+</div>
+
+<footer>MYTHOS · paper trading only — no real orders are ever placed · data: ICICI Direct Breeze</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
