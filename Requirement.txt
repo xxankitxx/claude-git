@@ -1,0 +1,251 @@
+Now that you’ve clarified the scope, I can craft a **complete, meticulously detailed blueprint** ready to be fed into your AI agent. The plan respects all your requirements: pure rule‑based logic (with optional ML), fresh ₹1,00,000 capital per day, only Nifty/Bank Nifty/Fin Nifty options, SL at –10 option‑premium points, a minimum target of 6 points but dynamically set at 10–12+ points, all while studying the entire basket of heavyweight assets. No ordinary option chain panels—instead, visionary ready‑reckoner dashboards.
+
+I’ll structure this blueprint as a specification document, with clear instructions that an AI agent can translate into code directly.
+
+---
+
+# Ultimate Options Paper‑Trading & Ready‑Reckoner System — AI Agent Blueprint
+
+## 1. System Overview
+A Windows‑native **browser‑based application** (Python backend, modern web frontend) that:
+- Ingests real‑time market data via ICICI Direct Breeze APIs (tick‑by‑tick, LTP, OI, order book depth, futures data).
+- Analyzes the entire heavyweight basket: Nifty, Bank Nifty, Fin Nifty, HDFC Bank, Reliance, ICICI Bank, Bharti Airtel, L&T, SBI, Infosys, TCS, Bajaj Finance, HUL, plus any additional heavyweights it deems important (e.g., ITC, Kotak, Axis).
+- Derives ultra‑precise support/resistance zones from Open Interest (OI) dynamics, Greeks, order flow, and volatility surfaces.
+- Generates high‑confidence option trades exclusively for Nifty, Bank Nifty, Fin Nifty, with defined entry, dynamic exit, and audio alerts.
+- Displays a beautiful, multi‑panel ready‑reckoner that goes far beyond any standard demat platform.
+- Resets capital to ₹1,00,000 at the start of each trading day; archives previous day’s performance manually.
+
+---
+
+## 2. Technology Stack
+- **Backend (Core Engine):** Python 3.11+ (essential for quant libraries)  
+  - `numpy`, `scipy`, `pandas`, `numba` (for performance)  
+  - `py_vollib` or custom Black‑Scholes, Heston, SABR implementations  
+  - `statsmodels`, `scikit‑learn` (optional ML)  
+  - `arch` (GARCH models)  
+  - `asyncio`, `websockets`, `uvloop` (real‑time data)  
+  - `breeze-connect` (ICICI Direct Breeze API wrapper)  
+  - `plotly`, `dash` (for the browser dashboard)  
+- **Frontend:** React (if you want ultimate beauty) OR Dash (Plotly) for rapid Python‑based UI. I’ll prescribe **Dash + custom React components** to achieve stunning, non‑standard panels.
+- **Database:** SQLite (lightweight, local) with `sqlite-utils` for storing tick data, OI snapshots, trades.  
+- **Audio:** `pygame` for playing pre‑recorded sound clips (entry, exit, SL hit, commentary trigger).
+
+---
+
+## 3. Data Ingestion Layer (Tick‑by‑Tick Without Missing a Beat)
+The engine will run a dedicated **async event loop** that never blocks. All heavy computations (Greeks, volatility models, ML) are farmed out to separate **process pools** (via `multiprocessing` or `ray`). The display update runs on the main thread via Dash callbacks.
+
+### 3.1. Instruments to Subscribe
+- **Indices (options underlyings):** Nifty 50, Bank Nifty, Fin Nifty.
+- **Heavyweight stocks:** All from your list + any stock with >2% Nifty weight (the system will auto‑fetch NSE weightages monthly).
+- **For each underlying:**  
+  - All weekly & monthly option strikes (both CE & PE) that are within ~15% of current spot.  
+  - Top‑5 order book depth (bid/ask quantity) for each option contract.  
+  - Futures data (near month) for all underlyings.
+- **Subscription granularity:** Tick mode wherever Breeze supports it; else 1‑second snapshots. The system will interpolate ticks if necessary, but must never miss a display update.
+
+### 3.2. Data Pipeline
+1. **Receiver coroutine** → puts tick into a lock‑free queue.
+2. **Fast parser** → updates a global `MarketState` object (in‑memory, thread‑safe).
+3. **Background workers** (one per core):
+   - Compute option Greeks (Black‑Scholes) on all option chains → every 100 ms.
+   - Compute advanced models (Heston, SABR, GARCH) → every 2 seconds.
+   - Update support/resistance zones → every OI snapshot.
+   - Run trade decision logic → every tick.
+4. **Dash server** → reads `MarketState` via callbacks every 200 ms (configurable) to refresh panels.
+
+---
+
+## 4. Open Interest & Support/Resistance Engine (The Core Differentiator)
+This is the heart of the system. **It does not use price‑based S/R alone**, but combines OI concentration, OI change acceleration, PCR, and order flow.
+
+### 4.1. OI Zone Construction
+For each underlying (index and stock), the system:
+- **Tracks OI by strike** for both CE and PE.
+- **Identifies OI walls:** Strikes where OI > 2× average of neighbouring strikes (configurable).
+- **Calculates OI change rate:** d(OI)/dt using exponential moving average over 1, 3, 5 minutes.
+- **Computes PCR per strike and aggregate PCR (all strikes).**
+- **Definition per your specification:**  
+  - **Put OI created by bulls** (hedging/protection). **Call OI created by bears** (covered calls or speculative).  
+  - High PCR at a strike → that strike is being defended by bulls → strong support.  
+  - Low PCR (call heavy) → resistance.
+- **Therefore:**
+  - **Support zone** = cluster of strikes where PCR > 1 and Put OI is increasing with positive acceleration.
+  - **Resistance zone** = cluster where PCR < 0.7 and Call OI is increasing with negative acceleration.
+- **Dynamic tracking:** The system re‑computes these zones every time OI changes; they shift intraday.
+
+### 4.2. Combined S/R from Multiple Heavyweights
+Since Nifty/Bank Nifty/Fin Nifty are weighted averages:
+- For each index constituent, compute individual S/R zones from its own options OI.
+- Map constituent S/R levels back to index points using the constituent’s beta and weight.
+- The final index S/R is a weighted blend of the index’s own option OI zones **and** the implied zones from top constituents.
+- Example: If Reliance OI suggests strong support at ₹2,500, and Reliance has 9% weight in Nifty, the system translates that to a Nifty support contribution = 2500 * 0.09 / Reliance’s correlation factor.
+
+### 4.3. Additional OI‑Based Signals
+- **Max Pain:** Calculate the strike where total option buyer pain (CE+PE) is minimized; often acts as a magnetic level.
+- **OI change divergence:** If price rises but call OI falls (calls being covered by bears) → bearishness fading → potential long.
+- **Volume‑weighted OI delta:** For each strike, compute the net delta of all options (using Black‑Scholes delta) weighted by OI; the cumulative delta gives a market‑maker hedging flow indication.
+
+---
+
+## 5. Greeks & Volatility Models — Where & How They Are Used
+You asked the AI to decide. Here’s the intelligent design:
+
+### 5.1. Real‑Time Greek Calculation
+- **Black‑Scholes‑Merton:** Used for all option contracts (European assumption works well for indices). Compute Delta, Gamma, Theta, Vega, Rho, Charm, Vanna, Vomma every 200 ms using compiled `py_vollib` or a Numba‑accelerated custom function.
+- **Greeks are used in trade decisions:**
+  - **Delta** to gauge directional exposure; option delta of 0.4 preferred for intraday moves.
+  - **Gamma** to assess stability; avoid high gamma near expiry unless breakout expected.
+  - **Theta** to consider time decay cost; only enter positions when expected move (from expected move formula) exceeds theta decay over planned holding period.
+  - **Vega** to capture IV expansion opportunities (e.g., pre‑event).
+  - **Charm/Vanna** to predict delta changes with time/vol; advanced adjustment for trade management.
+
+### 5.2. Advanced Models (Heston, SABR, GARCH)
+- **Purpose:** Validate support/resistance and gauge market regime, not for real‑time pricing.
+- **Heston model** calibrated every 5 minutes to produce forward volatility smile; if OTM puts are overpriced relative to Heston fair value, it suggests strong hedging demand (bullish).
+- **SABR** for fine‑tuning skew interpolation.
+- **GARCH(1,1) / GJR‑GARCH** on spot returns to forecast short‑term volatility regime. High forecasted vol → prefer debit spreads or limited‑risk strategies; low vol → outright options.
+- **IV Rank & IV Percentile** (daily, weekly, monthly) to determine if premiums are historically cheap or expensive — influences stop‑loss and target scaling (wider targets in high IV environments).
+
+### 5.3. Volatility Surface & Skew
+- Live 3D volatility surface (moneyness vs. expiry) is a ready‑reckoner panel.
+- **Skew index:** (IV of 25‑delta put – IV of 25‑delta call). Steepening skew → rising fear → bullish for puts or bearish? The system will interpret based on context (if skew steepens while price holds, bullish; if price drops, bearish continuation).
+
+---
+
+## 6. Futures Data & Order Flow Analysis
+- **For every underlying** (indices and heavyweights), subscribe to near‑month futures tick data.
+- **Compute Order Flow Metrics:**
+  - Cumulative Volume Delta (CVD) — net volume at ask minus bid.
+  - Delta change in real‑time; a rising CVD with rising price = strong institutional buying.
+  - Footprint charts (not displayed as a panel, but computed internally) — high volume at specific price levels become S/R zones.
+- **Index futures order flow** is the primary directional anchor for option trades. The system will **only enter a CE long** when Nifty/Bank Nifty futures CVD is positive and accelerating.
+
+### 6.1. Integration with Weightage
+- For each heavyweight, compute a “score” based on its futures order flow and OI outlook.
+- Weighted sum of scores across all constituents gives an aggregate sentiment index for the broader index. This feeds the final trade decision.
+
+---
+
+## 7. Trade Decision Engine (Pure Rules, No ML Unless Supplementary)
+The engine operates in three steps:
+
+### 7.1. Pre‑Filter (Market Structure)
+- **Time filter:** No trades in first 5 minutes of market open; no new positions after 14:30.
+- **Major events:** Check economic calendar (via API) — avoid 30 minutes around major news.
+- **Volatility filter:** If IV Rank < 20 and ADX(14) < 20 → no trade (chop).
+
+### 7.2. Signal Generation
+The system will evaluate long CE and long PE separately. Only the direction with a signal score above a threshold (0.7) will be considered.
+
+**Long CE Signal Score = weighted sum of:**
+1. **Futures CVD trend:** +0.25 if CVD rising and price above VWAP.
+2. **Composite S/R:** +0.25 if price bounced off a strong OI support zone (from index + constituents).
+3. **PCR flip:** +0.15 if aggregate PCR crossed above 1.2 after being below.
+4. **OI divergence:** +0.1 if call OI is dropping while price rises.
+5. **IV Rank:** +0.1 if IV Rank > 30 (cheap premium) *or* IV expanding.
+6. **Momentum:** +0.1 if SuperTrend (10,3) flipped bullish and RSI(14) > 50.
+7. **Volume confirmation:** +0.05 if CE bid/ask volume imbalance > 1.5 (buyers dominating).
+8. **Greeks alignment:** +0.05 if at‑the‑money option Delta > 0.4 and Gamma < 0.01 (stable).
+   *Total possible = 1.05; threshold = 0.70.*
+
+**Long PE Signal Score (mirror, with opposite criteria).**
+
+### 7.3. Trade Execution & Management
+- **Capital utilisation:** `lots = floor(100000 / (premium * lot_size))`. Premium is LTP of selected option.
+- **Strike selection:** The system picks the strike that:
+  - Is closest to the expected move (Expected Move = 0.8 * ATM straddle price) *plus* 10 points.
+  - Has highest liquidity (tight bid‑ask spread).
+  - Is just outside the nearest OI barrier (to avoid strike where time decay is extreme if price stalls).
+- **Entry:** Immediately upon signal threshold breach, place a simulated market order at LTP.
+- **Stop‑Loss:** Set at entry premium – 10 points. Hard exit if hit.
+- **Target & Dynamic Trailing:**
+  - Initial target = entry premium + 12 points.
+  - Once premium rises by 6 points, the system activates **dynamic trailing**:
+    - Trailing stop starts at entry premium + 1 point (so a 1‑point giveback triggers exit if price reverses after 6‑point gain).
+    - As profit increases, the trailing stop advances based on a **volatility‑adjusted parameter**: trailed stop = max(previous stop, current price – (ATR(14) of option premium)).
+    - This captures larger moves while locking in 6+ points minimum.
+- **Trade strength monitoring:** After entry, the system continuously re‑evaluates the signal score. If the score drops below 0.4, it triggers a “weakening” alert and tightens the trailing stop to exit at next pullback, even if not at target/SL.
+
+---
+
+## 8. Commentary Engine (Pre‑Programmed, High Significance Only)
+Commentaries are triggered only by extreme events, avoiding noise:
+
+| Event | Commentary Text Example |
+|-------|------------------------|
+| Index PCR spikes > 2.0 in 5 minutes | “Massive protective put buying — strong bullish support building at [strike].” |
+| Futures CVD diverges sharply from price (2 std. dev.) | “Institutional order flow anomaly: CVD surging while price flat — potential breakout incoming.” |
+| IV Rank jumps from <30 to >80 in one candle | “Volatility explosion: option premiums have become extremely rich, adjust positions.” |
+| Max Pain shift > 100 points | “Max Pain magnet moved to [level] — expect gravitation.” |
+| Volume surge > 5× average on a specific CE strike | “Unusual call accumulation at [strike] — smart money positioning for upside.” |
+
+---
+
+## 9. Ready‑Reckoner Panels (No Ordinary Option Chains!)
+All panels are live, stunning, and built with Plotly/React to offer intuition at a glance.
+
+### Panel Layout (Customizable Grid)
+**Row 1 – Market Overview**
+- **A. Index Sentiment Card:** Nifty, Bank Nifty, Fin Nifty real‑time “Bull Score” vs “Bear Score” gauges (0‑100). Derived from weighted constituent analysis.
+- **B. Synthetic PCR Map:** Heatmap of strike vs expiry, coloured by PCR value (green for high, red for low). Instantly shows support/resistance clusters.
+
+**Row 2 – Core Analytics**
+- **C. OI Delta Flow:** 3D streamgraph showing cumulative delta of option OI over time – like a footprint of hedging flows.
+- **D. Support/Resistance Thermometer:** Vertical bars for each index, showing near‑term S/R levels with thickness proportional to OI strength. Updated per tick.
+
+**Row 3 – Trade Intelligence**
+- **E. Trade Signal Cockpit:** Large cards that only appear when a signal is live: “Buy CE | Nifty | 19500 | Premium ₹142 | SL ₹132 | Target ₹154+”.
+- **F. Active Position Monitor:** Real‑time P&L, signal strength decay, trailing stop level, exit countdown.
+
+**Row 4 – Volatility & Greeks**
+- **G. Volatility Surface 3D Plot** (moneyness × expiry × IV) with adjustable theta/time view.
+- **H. Greek Exposure Panel:** Live bar chart of net Delta/Gamma/Vega of the current position (paper position).
+
+**Row 5 – Commentary & Flow**
+- **I. Commentary Ticker:** Scrolling alerts with audio triggers.
+- **J. Order Flow Imbalance Bar:** For each heavyweight, a bar showing bid‑ask volume imbalance and net CVD direction.
+
+**Row 6 – Historical Archive Access**
+- **K. Performance Dashboard:** Daily P&L, Sharpe, Max DD, Win Rate, Expectancy. Manual archive button to export previous day’s trade log and capital history.
+
+---
+
+## 10. Audio Alert Implementation
+- Sound files: `entry.mp3`, `exit.mp3`, `sl_hit.mp3`, `commentary_trigger.mp3`.  
+- Played via `pygame.mixer` in a non‑blocking thread.  
+- Every entry/exit/target‑hit event triggers a distinct 3‑second sound.  
+- Commentary events trigger a different chime.
+
+---
+
+## 11. Daily Capital Reset & Manual Archiving
+- At 09:15 each day (as soon as data flows), the system’s “available capital” resets to ₹1,00,000.  
+- All trades of the day are logged with timestamps, signals, and P&L.  
+- At 15:30, the system auto‑saves the day’s trade log as a CSV/JSON file in an archive folder.  
+- A manual “Archive Previous Day” button is available in the UI to move logs into a compressed archive.
+
+---
+
+## 12. AI Agent Implementation Instructions
+When feeding this to the AI agent, use the following directive (exact prompt you can paste):
+
+```
+You are tasked with building a full‑stack paper trading system as per the specification below. 
+
+The system must be written in Python with a Dash/React frontend. Use Breeze APIs (already integrated) for data. All logical components must be implemented as modular classes. 
+
+Critical constraints:
+1. Never miss a tick — use asyncio + multiprocessing.
+2. OI-based support/resistance is the core.
+3. Only trade Nifty, Bank Nifty, Fin Nifty options.
+4. SL = -10 premium points; target min 6, ideal 12+, dynamic.
+5. Capital resets to 100k daily.
+6. No ordinary option chain display — only the panels described.
+
+Provide complete code for each module: data ingestion, analytics, trade logic, UI, and audio. Add extensive comments. Include a requirements.txt.
+```
+
+---
+
+This blueprint leaves no ambiguity. The AI agent can now systematically build each component, layer by layer, with the exact logic needed. Do you want me to also generate the actual Python code skeleton, or are you ready to hand this spec over to your AI agent?

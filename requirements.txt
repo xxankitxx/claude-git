@@ -1,0 +1,7 @@
+# MYTHOS — runtime dependencies (Python 3.11+)
+breeze-connect>=1.0.65
+numpy>=2.0
+scipy>=1.14
+fastapi>=0.115
+uvicorn>=0.30
+pygame>=2.6
