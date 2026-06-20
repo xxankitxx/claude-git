@@ -1,0 +1,36 @@
+  per-bar dump -> D:\ClaudeCode\edge_out\bars_2026-06-19.jsonl  (22132 rows)
+
+  ENTRY-EDGE PROBE — 2026-06-19
+    correctness gate: replay._run -> 9 trades, +44.9 pts  [PASS]
+    probed bars: 22132  (timeouts 4808 = 21.7%)
+
+    signal                        T.n   T.wr   T.exp   F.exp    edge
+    base_rate                   22132  46.1%   +0.11   +0.00   +0.11
+    ev:Defenders adding OI       1159  96.7%  +11.28   -0.51  +11.79
+    ev:Exhaustion (fall into zone)   3324  60.6%   +2.59   -0.33   +2.92
+    ev:Pressure exhausting       4928  56.6%   +1.96   -0.42   +2.38
+    ev:Zone holding              4615  56.1%   +1.92   -0.37   +2.28
+    ev:Price turning             3875  56.5%   +1.93   -0.28   +2.21
+    vote_ok_count>=6             3461  56.0%   +1.84   -0.21   +2.05
+    ev:Their premium stalling    3660  55.4%   +1.70   -0.21   +1.90
+    ev:Book favours us           3248  53.8%   +1.47   -0.13   +1.60
+    ev:Turn physics d²/dt²       2670  53.5%   +1.39   -0.07   +1.46
+    ev:Our premium rising        1944  52.1%   +1.20   +0.00   +1.20
+    ev:AVWAP reclaim             2640  52.1%   +1.03   -0.02   +1.04
+    vis_inflection                457  48.6%   +0.57   +0.10   +0.47
+    ev:ATM±6 PCR shift           1000  47.5%   +0.35   +0.10   +0.26
+    kin_prem_a>0                10891  46.2%   +0.13   +0.09   +0.04
+    ev:BankNifty/FinNifty agree   2493  45.9%   +0.08   +0.11   -0.03
+    cross_blocked                   0   0.0%   +0.00   +0.11   -0.11
+    ev:Cheapness                    0   0.0%   +0.00   +0.11   -0.11
+    ev:Heavyweights agree           0   0.0%   +0.00   +0.11   -0.11
+    kin_spot_a>0                10965  45.7%   +0.04   +0.18   -0.14
+    kin_spot_v>0                11087  45.4%   -0.01   +0.22   -0.23
+    ev:Unwinding fuel             666  43.0%   -0.52   +0.13   -0.64
+    ev:Buyers queuing            4098  42.8%   -0.51   +0.25   -0.76
+    ev:OI divergence             1046  42.3%   -0.62   +0.14   -0.77
+    ev:Premium exploding          868  40.1%   -1.04   +0.16   -1.20
+    kind==BREAK                 10354  41.9%   -0.69   +0.81   -1.50
+    ev:Flow thrust                196   4.6%   -5.00   +0.15   -5.15
+    ev:Wall capitulating          587  10.2%   -7.75   +0.32   -8.07
+

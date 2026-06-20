@@ -1,0 +1,36 @@
+  per-bar dump -> D:\ClaudeCode\edge_out\bars_2026-06-18.jsonl  (22238 rows)
+
+  ENTRY-EDGE PROBE — 2026-06-18
+    correctness gate: replay._run -> 11 trades, +34.8 pts  [PASS]
+    probed bars: 22238  (timeouts 5903 = 26.5%)
+
+    signal                        T.n   T.wr   T.exp   F.exp    edge
+    base_rate                   22238  51.3%   +0.95   +0.00   +0.95
+    ev:Defenders adding OI         25  96.0%  +11.12   +0.94  +10.18
+    ev:OI divergence              718  89.4%   +7.64   +0.72   +6.91
+    cross_blocked                 134  78.4%   +5.52   +0.92   +4.60
+    ev:Unwinding fuel             318  61.5%   +2.89   +0.92   +1.97
+    vis_inflection                438  61.5%   +2.88   +0.91   +1.97
+    ev:Exhaustion (fall into zone)  10523  53.0%   +1.44   +0.51   +0.92
+    ev:Premium exploding          507  57.1%   +1.74   +0.93   +0.81
+    ev:Buyers queuing            3071  56.2%   +1.42   +0.87   +0.55
+    ev:Price turning            10818  51.4%   +1.11   +0.79   +0.32
+    kind==BREAK                  8383  53.6%   +1.14   +0.83   +0.30
+    kin_prem_a>0                10595  51.8%   +1.05   +0.86   +0.19
+    kin_spot_a>0                11093  51.9%   +1.03   +0.87   +0.16
+    kin_spot_v>0                11082  51.7%   +1.01   +0.89   +0.12
+    ev:Turn physics d²/dt²       6198  50.4%   +0.91   +0.96   -0.06
+    ev:Our premium rising        4073  50.3%   +0.88   +0.96   -0.08
+    ev:Zone holding             11689  49.9%   +0.83   +1.08   -0.25
+    vote_ok_count>=6             7393  49.2%   +0.71   +1.07   -0.36
+    ev:Their premium stalling    8623  48.7%   +0.58   +1.18   -0.59
+    ev:BankNifty/FinNifty agree   4856  47.9%   +0.43   +1.09   -0.66
+    ev:Book favours us           8127  48.1%   +0.49   +1.21   -0.73
+    ev:Pressure exhausting      12368  48.7%   +0.60   +1.38   -0.78
+    ev:AVWAP reclaim             6011  47.1%   +0.32   +1.18   -0.86
+    ev:Wall capitulating          997 100.0%   +0.08   +0.99   -0.90
+    ev:Cheapness                    0   0.0%   +0.00   +0.95   -0.95
+    ev:Heavyweights agree           0   0.0%   +0.00   +0.95   -0.95
+    ev:Flow thrust               2497  42.3%   -0.37   +1.11   -1.48
+    ev:ATM±6 PCR shift           1235  40.5%   -0.92   +1.06   -1.98
+

@@ -1,0 +1,36 @@
+  per-bar dump -> D:\ClaudeCode\edge_out\bars_2026-06-17.jsonl  (22123 rows)
+
+  ENTRY-EDGE PROBE — 2026-06-17
+    correctness gate: replay._run -> 10 trades, -5.9 pts  [PASS]
+    probed bars: 22123  (timeouts 6934 = 31.3%)
+
+    signal                        T.n   T.wr   T.exp   F.exp    edge
+    base_rate                   22123  35.6%   -1.49   +0.00   -1.49
+    ev:OI divergence              681  83.4%   +7.38   -1.77   +9.15
+    cross_blocked                   9  75.0%   +2.89   -1.49   +4.38
+    ev:ATM±6 PCR shift           1342  54.4%   +1.58   -1.69   +3.26
+    ev:Pressure exhausting      14008  42.1%   -0.55   -3.10   +2.55
+    ev:Zone holding             13761  41.7%   -0.63   -2.91   +2.29
+    ev:Their premium stalling   10511  43.7%   -0.29   -2.57   +2.28
+    ev:Book favours us           9734  43.5%   -0.33   -2.40   +2.07
+    ev:Our premium rising        5069  45.4%   -0.00   -1.93   +1.93
+    ev:Turn physics d²/dt²       7501  43.2%   -0.37   -2.06   +1.70
+    ev:Cheapness                    0   0.0%   +0.00   -1.49   +1.49
+    ev:Heavyweights agree           0   0.0%   +0.00   -1.49   +1.49
+    ev:Price turning            12548  39.6%   -0.99   -2.14   +1.15
+    vis_inflection                321  41.4%   -0.58   -1.50   +0.92
+    vote_ok_count>=6             8324  40.1%   -0.96   -1.81   +0.85
+    ev:Wall capitulating          747  27.6%   -0.76   -1.51   +0.75
+    ev:Exhaustion (fall into zone)  11934  38.1%   -1.22   -1.80   +0.58
+    kin_spot_v>0                11267  36.6%   -1.36   -1.63   +0.27
+    ev:AVWAP reclaim             5358  38.0%   -1.49   -1.49   -0.01
+    kin_prem_a>0                10999  35.7%   -1.51   -1.47   -0.03
+    kin_spot_a>0                10968  34.7%   -1.63   -1.35   -0.28
+    ev:BankNifty/FinNifty agree   4181  34.9%   -1.86   -1.40   -0.45
+    ev:Premium exploding          507  21.2%   -3.76   -1.44   -2.33
+    ev:Buyers queuing            2436  13.4%   -4.02   -1.18   -2.85
+    ev:Flow thrust               2007   6.2%   -4.23   -1.21   -3.02
+    kind==BREAK                  7032  11.6%   -4.08   -0.28   -3.81
+    ev:Unwinding fuel             193  16.6%   -6.35   -1.45   -4.91
+    ev:Defenders adding OI         50   8.0%   -8.24   -1.47   -6.77
+
